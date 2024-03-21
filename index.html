@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<!--
+Nome: Gabriela Monforte Dias          nº: 10        Turma: 3A             
+Nome:  Julia De Souza De Nobrega      nº: 18        Turma: 3A  -->
+
+<html lang="PT-BR">
+<head>
+    <title>Primos Naturais</title>        
+    <meta charset="UTF-8">          
+    <script>
+        function recebeNumero(){
+            var canvas = document.getElementById('meuCanvas');
+            if (canvas.getContext){
+                var cntxt = canvas.getContext('2d');
+                var maxWidth = 300;
+                var lineHeight = 35;
+                var x = (canvas.width - maxWidth) / 2;
+                var y = 60;
+                var grad = cntxt.createLinearGradient(0, 0, canvas.width, 0);
+                grad.addColorStop(0,"rgb(199, 21, 133)");
+                grad.addColorStop(0.5, "rgb(219, 214, 214)");
+                grad.addColorStop(1,"rgb(199 ,21, 133)");
+               
+                var N1 = parseInt(document.getElementById("Numero1").value, 10);
+                cntxt.fillStyle = "rgb(219, 214, 214)";
+                cntxt.fillRect (0, 0, canvas.width, canvas.height);                    
+                cntxt.font="30px Comic Sans MS";
+                cntxt.fillStyle = grad;
+                primosAte(N1, cntxt, x, y);
+    }
+    }
+
+        function éPrimo(numero1) {
+            let éPrimo = true;
+            for (let i = 2; i <= numero1 / 2; i++) {
+                if (numero1 % i === 0) {
+                    éPrimo = false;
+                    break;
+    }
+    }
+            return éPrimo;
+    }
+
+        function primosAte(numero1, cntxt, x, y) {
+            let primos = [];
+            for (let i = 2; i <= numero1; i++) {
+                if (éPrimo(i)) {
+                    primos.push(i);
+    }
+    }
+            cntxt.fillText("" + numero1 + "", x, y);
+            y += 40;
+            for (let i = 0; i < primos.length; i++) {
+                cntxt.fillText(primos[i], x, y);
+                y += 30;
+    }
+    }
+    </script>
+</head>
+<body>
+    <div>
+        <h1>Primos!</h1>
+        <label style="font-size: 20px;">Numero 1</label>
+        <input type="text" id="Numero1" autofocus><br>
+        <button onclick="recebeNumero()">Mostrar primos</button><br><br>
+        <canvas id="meuCanvas" width="400" height="460" style="border:3px solid #d62b94; background-color: rgb(219, 214, 214);"></canvas>
+    </div>
+</body>
+</html>
